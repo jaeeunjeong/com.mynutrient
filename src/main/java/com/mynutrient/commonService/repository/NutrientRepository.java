@@ -8,6 +8,6 @@ import java.util.Optional;
 public interface NutrientRepository  {
 
     Nutrient saveNutrient(Nutrient nutrient);
-    Optional<Nutrient> findByIngredient(String word);
-    List<Nutrient> findAll(String sort);
+    Optional<Nutrient> findByIngredient(String word,String sort);
+    List<Nutrient> findAllOrderbySort(String sort);
 }
