@@ -2,28 +2,31 @@ package com.mynutrient;
 
 import com.mynutrient.commonService.repository.MemoryNutrientRepository;
 import com.mynutrient.commonService.repository.NutrientRepository;
-import com.mynutrient.commonService.service.NutrientService;
+import com.mynutrient.community.repository.MemoryPostsRepository;
 import com.mynutrient.community.repository.PostsRepository;
-import com.mynutrient.community.service.PostsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 
 @Configuration
 public class SpringConfig {
     private final DataSource dataSource;
+    private final EntityManager em;
 
-    public SpringConfig(DataSource dataSource) {
+    public SpringConfig(DataSource dataSource, EntityManager em) {
         this.dataSource = dataSource;
+        this.em = em;
     }
 
-    @Bean
-    public NutrientService nutrientService() {
-        return new NutrientService((nutrientRepository() ));
-    }
     @Bean
     public NutrientRepository nutrientRepository() {
-        return new MemoryNutrientRepository();
+        return new MemoryNutrientRepository(em);
+    }
+
+    @Bean
+    public PostsRepository postsRepository() {
+        return (PostsRepository) new MemoryPostsRepository();
     }
 }
