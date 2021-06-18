@@ -15,7 +15,6 @@ public class MemoryNutrientRepository implements NutrientRepository {
         this.em = em;
     }
 
-
     @Override
     public Nutrient saveNutrient(Nutrient nutrient) {
         em.persist(nutrient);

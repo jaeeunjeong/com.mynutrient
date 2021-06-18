@@ -15,14 +15,12 @@ public class NutrientService {
     public NutrientService(NutrientRepository nutrientRepository) {
         this.nutrientRepository = nutrientRepository;
     }
+
     public List<Nutrient> findAll(String sort){
         return nutrientRepository.findAllOrderbySort(sort);
     }
 
     public Optional<Nutrient> findByWord(String catogory, String word){
-
-        //if("".equals(catogory)) return nutrientRepository.findAll();
-
         return nutrientRepository.findByIngredient(catogory, word);
     }
 
