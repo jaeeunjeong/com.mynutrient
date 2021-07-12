@@ -6,29 +6,34 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 import javax.persistence.EntityManager;
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class MemoryNutrientRepository implements NutrientRepository {
 
-    private final EntityManager em;
-
-    public MemoryNutrientRepository(EntityManager em) {
-        this.em = em;
-    }
+    private static Map<Long, Nutrient> nutrientStorege = new ConcurrentHashMap<>();
+    private static long sequence = 0L;//DB에서 올려주도록 할 것
 
     @Override
     public Nutrient saveNutrient(Nutrient nutrient) {
-        em.persist(nutrient);
+        nutrient.setNutrient_seq_id(++sequence);
+        nutrientStorege.put(nutrient.getNutrient_seq_id(), nutrient);
         return nutrient;
     }
 
     @Override
     public Optional<Nutrient> findByIngredient(String ingredient, String sort) {
-        Nutrient nutrient = em.find(Nutrient.class, ingredient);
-        return Optional.ofNullable(nutrient);
+        //return Optional.ofNullable(nutrientStorege.get(ingredient));//단순 유일값 조회
+        return nutrientStorege.values().stream()
+                .filter(nutrient -> nutrient.getIngredientName().equals(ingredient))
+                .findAny();
     }
 
     @Override
     public List<Nutrient> findAllOrderbySort(String sort) {
-        return null;
+        return new ArrayList<>(nutrientStorege.values());
+    }
+
+    public void clearNutrientStorage() {
+        nutrientStorege.clear();
     }
 }

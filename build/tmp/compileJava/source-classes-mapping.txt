@@ -1,2 +1,40 @@
 com/mynutrient/Application.java
  com.mynutrient.Application
+com/mynutrient/userArea/controller/UserServiceController.java
+ com.mynutrient.userArea.controller.UserServiceController
+com/mynutrient/memberManage/service/MemberManageService.java
+ com.mynutrient.memberManage.service.MemberManageService
+com/mynutrient/community/service/PostsService.java
+ com.mynutrient.community.service.PostsService
+com/mynutrient/community/repository/PostsRepository.java
+ com.mynutrient.community.repository.PostsRepository
+com/mynutrient/community/web/dto/PostsSaveRequestDto.java
+ com.mynutrient.community.web.dto.PostsSaveRequestDto
+com/mynutrient/community/domain/Posts.java
+ com.mynutrient.community.domain.Posts
+com/mynutrient/community/repository/MemoryPostsRepository.java
+ com.mynutrient.community.repository.MemoryPostsRepository
+com/mynutrient/userArea/domain/UserNutrientList.java
+ com.mynutrient.userArea.domain.UserNutrientList
+com/mynutrient/memberManage/repository/MemberManageRepository.java
+ com.mynutrient.memberManage.repository.MemberManageRepository
+com/mynutrient/community/controller/CommunityController.java
+ com.mynutrient.community.controller.CommunityController
+com/mynutrient/memberManage/controller/MemberManageController.java
+ com.mynutrient.memberManage.controller.MemberManageController
+com/mynutrient/userArea/repository/UserServiceRepository.java
+ com.mynutrient.userArea.repository.UserServiceRepository
+com/mynutrient/memberManage/domain/Member.java
+ com.mynutrient.memberManage.domain.Member
+com/mynutrient/commonService/controller/commonServiceController.java
+ com.mynutrient.commonService.controller.commonServiceController
+com/mynutrient/commonService/service/NutrientService.java
+ com.mynutrient.commonService.service.NutrientService
+com/mynutrient/commonService/domain/Nutrient.java
+ com.mynutrient.commonService.domain.Nutrient
+com/mynutrient/commonService/repository/NutrientRepository.java
+ com.mynutrient.commonService.repository.NutrientRepository
+com/mynutrient/SpringConfig.java
+ com.mynutrient.SpringConfig
+com/mynutrient/commonService/repository/MemoryNutrientRepository.java
+ com.mynutrient.commonService.repository.MemoryNutrientRepository

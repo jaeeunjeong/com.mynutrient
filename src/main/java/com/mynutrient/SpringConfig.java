@@ -22,11 +22,11 @@ public class SpringConfig {
 
     @Bean
     public NutrientRepository nutrientRepository() {
-        return new MemoryNutrientRepository(em);
+        return new MemoryNutrientRepository();
     }
 
     @Bean
     public PostsRepository postsRepository() {
-        return (PostsRepository) new MemoryPostsRepository();
+        return new MemoryPostsRepository(em);
     }
 }
