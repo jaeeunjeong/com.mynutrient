@@ -3,6 +3,7 @@ package com.mynutrient.commonService.service;
 import com.mynutrient.commonService.domain.Nutrient;
 import com.mynutrient.commonService.repository.MemoryNutrientRepository;
 import com.mynutrient.commonService.repository.NutrientRepository;
+import com.mynutrient.community.domain.Posts;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +17,15 @@ public class NutrientService {
         this.nutrientRepository = nutrientRepository;
     }
 
-    public List<Nutrient> findAll(String sort){
+    public Long saveNutrient(Nutrient nutrient){
+        nutrientRepository.saveNutrient(nutrient);
+        return nutrient.getNutrient_seq_id();
+    }
+
+    /**
+     * 전체 검색
+     * */
+    public List<Nutrient> findNutrientAllList(String sort){
         return nutrientRepository.findAllOrderbySort(sort);
     }
 
