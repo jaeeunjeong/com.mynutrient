@@ -25,8 +25,4 @@ public class SpringConfig {
         return new MemoryNutrientRepository();
     }
 
-    @Bean
-    public PostsRepository postsRepository() {
-        return new MemoryPostsRepository(em);
-    }
 }
