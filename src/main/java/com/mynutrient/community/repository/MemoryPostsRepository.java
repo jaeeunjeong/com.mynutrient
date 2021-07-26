@@ -5,8 +5,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 @Repository
 public class MemoryPostsRepository implements PostsRepository {
@@ -19,6 +17,7 @@ public class MemoryPostsRepository implements PostsRepository {
 
     @Override
     public Posts savePost(Posts post) {
+        //최초 저장은 persist
         em.persist(post);
         //저장한 후 seqId를 가져와야함.
         Posts newPost = em.find(Posts.class, post.getPostSeq());
@@ -27,14 +26,17 @@ public class MemoryPostsRepository implements PostsRepository {
 
     @Override
     public long updatePost(Posts post) {
-        //update
-        return 0;
+        //최초의 값이 아니라면 merge
+        em.merge(post);
+        return post.getPostSeq();
     }
 
     @Override
     public long deletePost(int postSeq) {
-        //update query
-        return 0;
+        Posts post = em.find(Posts.class, postSeq);
+        post.setUseYN(false);
+        em.merge(post);
+        return postSeq;
     }
 
     @Override
