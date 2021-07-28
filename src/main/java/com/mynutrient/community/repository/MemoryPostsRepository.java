@@ -32,7 +32,7 @@ public class MemoryPostsRepository implements PostsRepository {
     }
 
     @Override
-    public long deletePost(int postSeq) {
+    public long deletePost(long postSeq) {
         Posts post = em.find(Posts.class, postSeq);
         post.setUseYN(false);
         em.merge(post);
@@ -62,4 +62,8 @@ public class MemoryPostsRepository implements PostsRepository {
         return result;
     }
      */
+
+    public void clearPostsStorage() {
+         em.clear();
+    }
 }

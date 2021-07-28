@@ -13,7 +13,7 @@ public interface PostsRepository {
 
     public long updatePost(Posts post);
 
-    public long deletePost(int postSeq);
+    public long deletePost(long postSeq);
 
     public List<Posts> selectPostsList();
 
