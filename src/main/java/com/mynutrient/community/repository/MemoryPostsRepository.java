@@ -5,8 +5,8 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Map;
 
-@Repository
 public class MemoryPostsRepository implements PostsRepository {
 
     private final EntityManager em;
@@ -45,23 +45,21 @@ public class MemoryPostsRepository implements PostsRepository {
     }
 
     @Override
-    public Posts readPost(int postSeq) {
+    public Posts readPost(long postSeq) {
         return em.find(Posts.class, postSeq);
     }
-    /*
+
     @Override
     public List<Posts> searchPostBywordWithCondition(Map<String, Object> params) {
         String word = String.valueOf(params.get("searchWord"));
         String condition = String.valueOf(params.get("searchType"));
-        List<Posts> result = em.createQuery("select p from Posts p" +
-                "where p.word like :word" +
-                "and p. = : condition", Posts.class)
+        List<Posts> result = em.createQuery("select p from Posts p " +
+                "where :condition like :word ", Posts.class)
                 .setParameter("word", word)
                 .setParameter("condition", condition)
                 .getResultList();
         return result;
     }
-     */
 
     public void clearPostsStorage() {
          em.clear();

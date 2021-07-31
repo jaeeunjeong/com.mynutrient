@@ -67,7 +67,7 @@ public class Posts {
         this.postLevel = postLevel;
     }
 
-    public boolean isUseYN() {
+    public boolean getUseYN() {
         return useYN;
     }
 

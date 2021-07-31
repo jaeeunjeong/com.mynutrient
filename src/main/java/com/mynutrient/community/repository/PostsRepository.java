@@ -17,8 +17,8 @@ public interface PostsRepository {
 
     public List<Posts> selectPostsList();
 
-    public Posts readPost(int postSeq);
+    public Posts readPost(long postSeq);
 
-    //public List<Posts> searchPostBywordWithCondition(Map<String, Object> params);
+    public List<Posts> searchPostBywordWithCondition(Map<String, Object> params);
 
 }

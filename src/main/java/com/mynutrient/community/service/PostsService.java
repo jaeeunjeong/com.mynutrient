@@ -45,7 +45,6 @@ public class PostsService {
         return postsRepository.selectPostsList();
     }
 
-    /*
     public List<Posts> searchPostBywordWithCondition(Model model,
                                                      @RequestParam ("searchWord") String word,
                                                      @RequestParam ("searchType") String type){
@@ -54,5 +53,4 @@ public class PostsService {
         params.put("searchType",type);
         return postsRepository.searchPostBywordWithCondition(params);
     }
-     */
 }
