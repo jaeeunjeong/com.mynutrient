@@ -6,6 +6,7 @@ import java.util.Collections;
 import javax.servlet.http.HttpSession;
 
 import com.mynutrient.config.auth.dto.OAuthAttributes;
+import com.mynutrient.config.auth.dto.OAuthAttributesBuilder;
 import com.mynutrient.config.auth.dto.SessionUser;
 import com.mynutrient.memberManage.domain.Member;
 import com.mynutrient.memberManage.repository.MemberManageRepository;
@@ -44,12 +45,12 @@ public class CustomOauth2UserService implements OAuth2UserService<OAuth2UserRequ
 
         httpSession.setAttribute("member", new SessionUser(member));
         return new DefaultOAuth2User(Collections.singleton(new
-                SimpleGrantedAuthority(member.getRoleKey())),attributes.getAttributes(),attributes.getNameAttributeKey());
+                SimpleGrantedAuthority(member.getRole().getKey())),attributes.getAttributes(),attributes.getNameAttributeKey());
     }
     private Member saveOrUpdate(OAuthAttributes attributes) {
         Member member = memberManageRepository.findByEmail(attributes.getEmail())
                 .map(entity -> entity.update( attributes.getName(), attributes.getPicture()))
-                .orElse(attributes.toEntity());
+                .orElse(OAuthAttributesBuilder.anOAuthAttributes().toEntity());
 
         return memberManageRepository.save(member);
     }
