@@ -7,12 +7,15 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-
+@SpringBootTest
+@Transactional
 class NutrientServiceTest {
 
     NutrientService nutrientService;
@@ -36,10 +39,8 @@ class NutrientServiceTest {
         nutrient.setIngredientName("vitaC");
         nutrient.setTakingTime("식후");
 
-        Long savdId = nutrientService.saveNutrient(nutrient);
-
-       // Nutrient result = nutrientRepository.findByIngredient("")
-
+        Long saveId = nutrientService.saveNutrient(nutrient);
+        org.assertj.core.api.Assertions.assertThat(saveId).isEqualTo(1);
     }
 
     @Test
@@ -55,9 +56,7 @@ class NutrientServiceTest {
 
         nutrientService.saveNutrient(nutrient1);
         nutrientService.saveNutrient(nutrient2);
-        List<Nutrient> resultList = nutrientService.findNutrientAllList("");
-
-        //list 검증을 어떻게 할 것인가...
+        List<Nutrient> resultList = nutrientService.findAllOrderbySort("");
 
     }
 
@@ -75,7 +74,7 @@ class NutrientServiceTest {
         nutrientService.saveNutrient(nutrient1);
         nutrientService.saveNutrient(nutrient2);
 
-        Optional<Nutrient> result = nutrientService.findByWord("name", "vitaC");
+        Optional<Nutrient> result = nutrientService.findByIngredient("vitaC", "name");
         org.assertj.core.api.Assertions.assertThat(result.equals(nutrient1));//테스트 케이스가 이상함
     }
 }
