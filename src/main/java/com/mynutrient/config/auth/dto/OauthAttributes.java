@@ -3,11 +3,11 @@ package com.mynutrient.config.auth.dto;
 import java.util.Map;
 
 public static class OAuthAttributes {
-    private Map<String, Object> attributes;
-    private String nameAttributeKey;
-    private String name;
-    private String email;
-    private String picture;
+    Map<String, Object> attributes;
+    String nameAttributeKey;
+    String name;
+    String email;
+    String picture;
 
     public static OAuthAttributes of(String registrationId, String userNameAttributeName, Map<String, Object> attributes) {
         return ofGoogle(userNameAttributeName,attributes);}
@@ -40,4 +40,5 @@ public static class OAuthAttributes {
     public String getPicture() {
         return picture;
     }
+
 }

@@ -5,12 +5,12 @@ import com.mynutrient.memberManage.domain.Role;
 
 import java.util.Map;
 
-public final class OAuthAttributesBuilder {
-    private Map<String, Object> attributes;
-    private String nameAttributeKey;
-    private String name;
-    private String email;
-    private String picture;
+public class OAuthAttributesBuilder {
+    Map<String, Object> attributes;
+    String nameAttributeKey;
+    String name;
+    String email;
+    String picture;
 
     private OAuthAttributesBuilder() {
     }
@@ -53,7 +53,6 @@ public final class OAuthAttributesBuilder {
         oAuthAttributes.name = this.name;
         return oAuthAttributes;
     }
-
 
     public Member toEntity() {
         return Member.MemberBuilder.aMember().name(name).email(email).picture(picture).role(Role.GUEST).build();
