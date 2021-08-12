@@ -2,6 +2,8 @@
 ## 요구 사항
 ### 회원 관리 부분(Member Manage)
 - [ ] OAuth2를 이용한 회원 로그인
+     - [x] Google
+     - [ ] Naver
 
 ### 사용자 개인 관리 부분(User Manage)
 - [ ] 사용자의 관심 영양제 
